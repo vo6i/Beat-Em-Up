@@ -4,18 +4,17 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // private float horizontalRotation = -90.0f;
-    // private float verticalRotation = -180.0f;
+    private new CharacterAnimation animation;
+    private float defaulRotation = 0.0f;
+    private Rigidbody body;
 
     public float horizontalSpeed = 2.0f;
     public float verticalSpeed = 1.5f;
 
-    private CharacterAnimation animation;
-    private Rigidbody body;
-
     void Awake()
     {
         body = GetComponent<Rigidbody>();
+        defaulRotation = gameObject.transform.eulerAngles.y;
         animation = GetComponentInChildren<CharacterAnimation>();
     }
 
@@ -27,36 +26,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdatePlayerRotation()
     {
-        if (Input.GetAxisRaw(Axis.HORIZONTAL) == 1)
+        float horizontalAxis = Input.GetAxisRaw(Axis.HORIZONTAL);
+        float verticalAxis = Input.GetAxisRaw(Axis.VERTICAL);
+
+        bool horizontalRotation = horizontalAxis != 0.0f;
+        bool verticalRotation = verticalAxis != 0.0f;
+
+        float rotation = 0.0f;
+
+        if (verticalRotation)
         {
-            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
-        }
-        else if (Input.GetAxisRaw(Axis.HORIZONTAL) == -1)
-        {
-            transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+            rotation += verticalAxis == 1.0f ? -180.0f : -360.0f;
         }
 
+        if (horizontalRotation)
+        {
+            float currentRotation = verticalAxis == -1.0f ? 270.0f : -90.0f;
 
-        if (Input.GetAxisRaw(Axis.VERTICAL) == 1)
-        {
-            transform.rotation = Quaternion.Euler(0.0f, -180.0f, 0.0f);
+            rotation += horizontalAxis == -1.0f ? -270.0f :
+                verticalRotation ? currentRotation : -90.0f;
         }
-        else if (Input.GetAxisRaw(Axis.VERTICAL) == -1)
+
+        if (!verticalRotation && !horizontalRotation)
         {
-            transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            rotation = defaulRotation;
         }
+
+        int directions = (verticalRotation && horizontalRotation) ? 2 : 1;
+        transform.rotation = Quaternion.Euler(0.0f, rotation / directions, 0.0f);
     }
 
     private void UpdatePlayerAnimation()
     {
-        if (Input.GetAxisRaw(Axis.HORIZONTAL) != 0 || Input.GetAxisRaw(Axis.VERTICAL) != 0)
-        {
-            animation.Walk(true);
-        }
-        else
-        {
-            animation.Walk(false);
-        }
+        animation.Walk(
+            Input.GetAxisRaw(Axis.HORIZONTAL) != 0 ||
+            Input.GetAxisRaw(Axis.VERTICAL) != 0
+        );
     }
 
     void FixedUpdate()
