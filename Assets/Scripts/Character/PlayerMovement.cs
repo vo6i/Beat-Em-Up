@@ -47,13 +47,11 @@ public class PlayerMovement : MonoBehaviour
                 verticalRotation ? currentRotation : -90.0f;
         }
 
-        if (!verticalRotation && !horizontalRotation)
+        if (verticalRotation || horizontalRotation)
         {
-            rotation = defaulRotation;
+            int directions = (verticalRotation && horizontalRotation) ? 2 : 1;
+            transform.rotation = Quaternion.Euler(0.0f, rotation / directions, 0.0f);
         }
-
-        int directions = (verticalRotation && horizontalRotation) ? 2 : 1;
-        transform.rotation = Quaternion.Euler(0.0f, rotation / directions, 0.0f);
     }
 
     private void UpdatePlayerAnimation()
