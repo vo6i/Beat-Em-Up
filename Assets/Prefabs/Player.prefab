@@ -50,7 +50,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   radius: 1
-  damage: 2
+  damage: 7.5
 --- !u!1 &498602273
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   radius: 1
-  damage: 2
+  damage: 7.5
 --- !u!1 &554903743
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   radius: 1
-  damage: 2
+  damage: 5
 --- !u!1 &1196891065
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   radius: 1
-  damage: 2
+  damage: 5
 --- !u!1 &2385984415379540850
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 3439066019781398708}
   - component: {fileID: 595227080}
   - component: {fileID: 7558941800648904721}
+  - component: {fileID: 1842662816}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -310,6 +311,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isPlayer: 1
+--- !u!114 &1842662816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385984415379540850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ee27c06949ec041acd5e698b6bd059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &4183024897579875062
 AudioSource:
   m_ObjectHideFlags: 0

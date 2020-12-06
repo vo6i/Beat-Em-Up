@@ -8,7 +8,7 @@ public class CharacterAnimationDelegate : MonoBehaviour
     private AudioClip whoosh, fall, hit, dead;
     private new CharacterAnimation animation;
 
-    private EnemyManager enemyMovement;
+    private EnemyManager enemyManager;
     private CameraShake cameraShake;
     private AudioSource audioSource;
 
@@ -25,7 +25,7 @@ public class CharacterAnimationDelegate : MonoBehaviour
 
         if (gameObject.CompareTag(ObjectTags.ENEMY))
         {
-            enemyMovement = GetComponentInParent<EnemyManager>();
+            enemyManager = GetComponentInParent<EnemyManager>();
         }
     }
 
@@ -131,7 +131,7 @@ public class CharacterAnimationDelegate : MonoBehaviour
         audioSource.Play();
     }
 
-    void DieSound()
+    void DeathSound()
     {
         audioSource.volume = 1.0f;
         audioSource.clip = dead;
@@ -141,17 +141,28 @@ public class CharacterAnimationDelegate : MonoBehaviour
     void EnableMovement()
     {
         transform.parent.gameObject.layer = 9;
-        enemyMovement.enabled = true;
+        enemyManager.enabled = true;
     }
 
     void DisableMovement()
     {
         transform.parent.gameObject.layer = 0;
-        enemyMovement.enabled = false;
+        enemyManager.enabled = false;
     }
 
     void ShakeCamera()
     {
         cameraShake.ShakeNow = true;
+    }
+
+    void CharacterDeath()
+    {
+        Invoke("DeactivateGameObject", 2.0f);
+    }
+
+    void DeactivateGameObject()
+    {
+        EnemySpawner.instance.Spawn();
+        gameObject.SetActive(false);
     }
 }

@@ -9,7 +9,7 @@ public class CharacterAttack : MonoBehaviour
     public LayerMask layerMask;
 
     public float radius = 1.0f;
-    public float damage = 2.0f;
+    public float damage = 5.0f;
 
     void Update()
     {
@@ -24,10 +24,12 @@ public class CharacterAttack : MonoBehaviour
 
         if (hit.Length > 0)
         {
+            bool knockDown = !isEnemy;
+
             if (isPlayer)
             {
-                bool knockDown = gameObject.CompareTag(ObjectTags.LEFT_ARM) ||
-                                 gameObject.CompareTag(ObjectTags.LEFT_LEG);
+                knockDown = gameObject.CompareTag(ObjectTags.LEFT_ARM) ||
+                            gameObject.CompareTag(ObjectTags.LEFT_LEG);
 
                 Vector3 hitPosition = hit[0].transform.position;
                 bool right = hit[0].transform.forward.x < 0;
@@ -36,9 +38,9 @@ public class CharacterAttack : MonoBehaviour
                 hitPosition.y += 1.25f;
 
                 Instantiate(hitEffect, hitPosition, Quaternion.identity);
-                hit[0].GetComponent<CharacterHealth>().ApplyDamage(damage, knockDown);
             }
 
+            hit[0].GetComponent<CharacterHealth>().ApplyDamage(damage, knockDown);
             gameObject.SetActive(false);
         }
     }
