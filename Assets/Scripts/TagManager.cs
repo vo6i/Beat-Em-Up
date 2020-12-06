@@ -27,12 +27,12 @@ public class AnimationTags
 public class ObjectTags
 {
     public const string UNTAGGED = "Untagged";
+    public const string CAMERA = "MainCamera";
 
     public const string LEFT_ARM = "LeftArm";
     public const string LEFT_LEG= "LeftLeg";
 
     public const string GROUND = "Ground";
-    public const string CAMERA = "Camera";
     public const string HEALTH = "Health";
 
     public const string PLAYER = "Player";

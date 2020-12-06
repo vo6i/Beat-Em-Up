@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LeftArm
   - LeftLeg
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - PostProcessing
+  - Camera
   - 
   - 
   - 
