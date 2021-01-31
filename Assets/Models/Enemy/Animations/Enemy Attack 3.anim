@@ -37954,6 +37954,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.16666667
+    functionName: TagRightLeg
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.26666668
     functionName: ActivateRightLegAttack
     data: 
@@ -37963,6 +37970,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.43333334
     functionName: DeactivateRightLegAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
+    functionName: UntagRightLeg
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

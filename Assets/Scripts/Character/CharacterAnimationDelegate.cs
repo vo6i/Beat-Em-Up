@@ -80,7 +80,17 @@ public class CharacterAnimationDelegate : MonoBehaviour
             rightLeg.SetActive(false);
         }
     }
-    
+
+    void TagRightLeg()
+    {
+        rightLeg.tag = ObjectTags.RIGHT_LEG;
+    }
+
+    void UntagRightLeg()
+    {
+        rightLeg.tag = ObjectTags.UNTAGGED;
+    }
+
     void TagLeftArm()
     {
         leftArm.tag = ObjectTags.LEFT_ARM;

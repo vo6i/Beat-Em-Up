@@ -29,8 +29,9 @@ public class ObjectTags
     public const string UNTAGGED = "Untagged";
     public const string CAMERA = "MainCamera";
 
+    public const string RIGHT_LEG = "RightLeg";
     public const string LEFT_ARM = "LeftArm";
-    public const string LEFT_LEG= "LeftLeg";
+    public const string LEFT_LEG = "LeftLeg";
 
     public const string GROUND = "Ground";
     public const string HEALTH = "Health";

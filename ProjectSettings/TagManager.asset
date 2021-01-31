@@ -8,6 +8,7 @@ TagManager:
   - LeftLeg
   - Enemy
   - Health
+  - RightLeg
   layers:
   - Default
   - TransparentFX

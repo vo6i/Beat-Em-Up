@@ -24,7 +24,7 @@ public class CharacterAttack : MonoBehaviour
 
         if (hit.Length > 0)
         {
-            bool knockDown = !isEnemy;
+            bool knockDown = isEnemy && gameObject.CompareTag(ObjectTags.RIGHT_LEG);
 
             if (isPlayer)
             {
