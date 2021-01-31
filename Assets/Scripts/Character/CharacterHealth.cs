@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class CharacterHealth : MonoBehaviour
 {
     private new CharacterAnimation animation;
+    private PlayerMovement movement;
     private SlowMotion slowMotion;
     private HealthBar healthBar;
 
@@ -20,6 +21,7 @@ public class CharacterHealth : MonoBehaviour
         if (isPlayer)
         {
             healthBar = GetComponent<HealthBar>();
+            movement = GetComponent<PlayerMovement>();
         }
     }
 
@@ -43,8 +45,8 @@ public class CharacterHealth : MonoBehaviour
             }
             else if (isPlayer)
             {
-                Invoke("EnableEnemyManager", 3.0f);
-                DisableEnemyManager();
+                movement.knockDown = true;
+                ToggleEnemyManager(false);
             }
         }
         else if (health == 0.0f)
@@ -54,12 +56,13 @@ public class CharacterHealth : MonoBehaviour
                 OnCharacterDeath(true);
             }
 
-            DisableEnemyManager();
+            ToggleEnemyManager(false);
             animation.Death();
         }
         else
         {
-            animation.Hit();
+            int type = isPlayer ? 1 : 0;
+            animation.Hit(type);
         }
     }
 
@@ -69,21 +72,9 @@ public class CharacterHealth : MonoBehaviour
         dead = true;
     }
 
-    void DisableEnemyManager()
+    public void ToggleEnemyManager(bool enable)
     {
-        if (isPlayer)
-        {
-            GameObject.FindWithTag(ObjectTags.ENEMY)
-                .GetComponent<EnemyManager>().enabled = false;
-        }
-    }
-
-    void EnableEnemyManager()
-    {
-        if (isPlayer)
-        {
-            GameObject.FindWithTag(ObjectTags.ENEMY)
-                .GetComponent<EnemyManager>().enabled = true;
-        }
+        GameObject.FindWithTag(ObjectTags.ENEMY)
+                .GetComponent<EnemyManager>().enabled = enable;
     }
 }

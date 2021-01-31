@@ -9,6 +9,8 @@ public class CharacterAnimationDelegate : MonoBehaviour
     private new CharacterAnimation animation;
 
     private EnemyManager enemyManager;
+    private PlayerAttack playerAttack;
+
     private CameraShake cameraShake;
     private AudioSource audioSource;
 
@@ -26,6 +28,10 @@ public class CharacterAnimationDelegate : MonoBehaviour
         if (gameObject.CompareTag(ObjectTags.ENEMY))
         {
             enemyManager = GetComponentInParent<EnemyManager>();
+        }
+        else if (gameObject.CompareTag(ObjectTags.PLAYER))
+        {
+            playerAttack = GetComponentInParent<PlayerAttack>();
         }
     }
 
@@ -148,16 +154,26 @@ public class CharacterAnimationDelegate : MonoBehaviour
         audioSource.Play();
     }
 
-    void EnableMovement()
+    void DisablePlayerAttack()
     {
-        transform.parent.gameObject.layer = 9;
-        enemyManager.enabled = true;
+        playerAttack.enabled = false;
     }
 
-    void DisableMovement()
+    void EnablePlayerAttack()
+    {
+        playerAttack.enabled = true;
+    }
+
+    void DisableEnemyMovement()
     {
         transform.parent.gameObject.layer = 0;
         enemyManager.enabled = false;
+    }
+
+    void EnableEnemyMovement()
+    {
+        transform.parent.gameObject.layer = 9;
+        enemyManager.enabled = true;
     }
 
     void ShakeCamera()

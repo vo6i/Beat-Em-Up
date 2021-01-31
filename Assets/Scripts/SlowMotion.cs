@@ -51,11 +51,6 @@ public class SlowMotion : MonoBehaviour
         for (int i = 0; audio && i < audioSources.Length; i++)
         {
             audioSources[i].audioSource.pitch = Time.timeScale * audioSources[i].defaultPitch;
-
-            /*if (audioSources[i].audioSource)
-            {
-                audioSources[i].audioSource.pitch = Time.timeScale * audioSources[i].defaultPitch;
-            }*/
         }
     }
 
@@ -67,11 +62,6 @@ public class SlowMotion : MonoBehaviour
         for (int i = 0; disableAudio && i < audioSources.Length; i++)
         {
             audioSources[i].audioSource.pitch = audioSources[i].defaultPitch;
-
-            /*if (audioSources[i].audioSource)
-            {
-                audioSources[i].audioSource.pitch = audioSources[i].defaultPitch;
-            }*/
         }
     }
 }

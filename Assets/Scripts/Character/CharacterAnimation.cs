@@ -53,9 +53,10 @@ public class CharacterAnimation : MonoBehaviour
         animator.SetTrigger(AnimationTags.KICK2);
     }
 
-    public void Hit()
+    public void Hit(int type)
     {
-        animator.SetTrigger(AnimationTags.HIT);
+        string hitType = type == 0 ? "" : type.ToString();
+        animator.SetTrigger(AnimationTags.HIT + hitType);
     }
 
     public void KnockDown()
