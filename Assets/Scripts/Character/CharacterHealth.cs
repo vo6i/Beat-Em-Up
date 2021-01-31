@@ -51,11 +51,7 @@ public class CharacterHealth : MonoBehaviour
         }
         else if (health == 0.0f)
         {
-            if (isPlayer)
-            {
-                OnCharacterDeath(true);
-            }
-
+            OnCharacterDeath(isPlayer);
             ToggleEnemyManager(false);
             animation.Death();
         }
@@ -68,8 +64,9 @@ public class CharacterHealth : MonoBehaviour
 
     void OnCharacterDeath(bool ko = false)
     {
-        slowMotion.Play(ko);
         dead = true;
+        slowMotion.Play(ko);
+        // if (!ko) Destroy(gameObject);
     }
 
     public void ToggleEnemyManager(bool enable)
