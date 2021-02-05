@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScale: 0.5
-  duration: 1.5
+  duration: 1
 --- !u!82 &826441813799189212
 AudioSource:
   m_ObjectHideFlags: 0

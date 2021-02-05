@@ -66,12 +66,15 @@ public class CharacterHealth : MonoBehaviour
     {
         dead = true;
         slowMotion.Play(ko);
-        // if (!ko) Destroy(gameObject);
     }
 
     public void ToggleEnemyManager(bool enable)
     {
-        GameObject.FindWithTag(ObjectTags.ENEMY)
-                .GetComponent<EnemyManager>().enabled = enable;
+        EnemyManager enemy = GameObject
+            .FindWithTag(ObjectTags.ENEMY)
+            .GetComponent<EnemyManager>();
+
+        enemy.enabled = enable;
+        if (!isPlayer) enemy.Destroy();
     }
 }

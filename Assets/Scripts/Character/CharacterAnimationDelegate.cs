@@ -190,6 +190,5 @@ public class CharacterAnimationDelegate : MonoBehaviour
     {
         EnemySpawner.instance.Spawn();
         gameObject.SetActive(false);
-        // Destroy(gameObject);
     }
 }

@@ -15,7 +15,7 @@ public class SlowMotion : MonoBehaviour
     private float timeScale = 0.5f;
 
     [SerializeField]
-    private float duration = 1.5f;
+    private float duration = 1.0f;
 
     private bool disableAudio = false;
     AudioSourceData[] audioSources;

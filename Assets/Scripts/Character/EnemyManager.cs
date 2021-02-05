@@ -86,4 +86,9 @@ public class EnemyManager : MonoBehaviour
     {
         return Vector3.Distance(transform.position, playerTarget.position);
     }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject, 2.5f);
+    }
 }
