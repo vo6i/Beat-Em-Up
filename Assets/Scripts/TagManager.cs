@@ -1,4 +1,4 @@
-﻿public struct AnimationTags
+﻿public struct AnimationTag
 {
     public const string KNOCK_DOWN  = "KnockDown";
     public const string MOVEMENT    = "Movement";
@@ -20,7 +20,7 @@
     public const string HIT         = "Hit";
 }
 
-public struct ObjectTags
+public struct ObjectTag
 {
     public const string CAMERA      = "MainCamera";
     public const string UNTAGGED    = "Untagged";

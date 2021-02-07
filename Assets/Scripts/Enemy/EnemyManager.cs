@@ -2,33 +2,36 @@
 
 public class EnemyManager : MonoBehaviour
 {
-    private new CharacterAnimation animation;
-    private bool followPlayer, attackPlayer;
+    [SerializeField]
+    private float speed = 2.0f;
 
-    public float attackDistance = 1.25f;
+    [SerializeField]
+    private float attackDistance = 1.25f;
+
+    private bool followPlayer, attackPlayer;
+    private new AnimationManager animation;
+
     private float defaultAttack = 0.75f;
     private float chaseDistance = 0.25f;
 
     private Transform playerTarget;
-    public float speed = 2.0f;
-
     private float attackTime;
     private Rigidbody body;
 
-    void Awake()
+    private void Awake()
     {
-        playerTarget = GameObject.FindWithTag(ObjectTags.PLAYER).transform;
-        animation = GetComponentInChildren<CharacterAnimation>();
+        playerTarget = GameObject.FindWithTag(ObjectTag.PLAYER).transform;
+        animation = GetComponentInChildren<AnimationManager>();
         body = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    private void Start()
     {
         attackTime = defaultAttack;
         followPlayer = true;
     }
 
-    void Update()
+    private void Update()
     {
         if (attackPlayer)
         {
@@ -36,7 +39,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void Attack()
+    private void Attack()
     {
         float followDistance = attackDistance + chaseDistance;
         attackTime += Time.deltaTime;
@@ -54,7 +57,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (followPlayer)
         {
@@ -62,7 +65,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void FollowTarget()
+    private void FollowTarget()
     {
         if (DistanceToPlayer() > attackDistance)
         {

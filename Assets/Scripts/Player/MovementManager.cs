@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class PlayerMovement : MonoBehaviour
+public class MovementManager : MonoBehaviour
 {
-    public float verticalSpeed = 1.5f;
-    public float horizontalSpeed = 2.0f;
+    public bool KnockDown { get; set; } = false;
+
+    [SerializeField]
+    private float horizontalSpeed = 2.0f;
+
+    [SerializeField]
+    private float verticalSpeed = 1.5f;
 
     private struct Axis
     {
@@ -13,17 +17,15 @@ public class PlayerMovement : MonoBehaviour
         public const string VERTICAL   = "Vertical";
     }
 
-    private new CharacterAnimation animation;
-    private bool isKnockedDown = false;
-
-    private CharacterHealth health;
+    private new AnimationManager animation;
+    private HealthManager health;
     private Rigidbody body;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        health = GetComponent<CharacterHealth>();
-        animation = GetComponentInChildren<CharacterAnimation>();
+        health = GetComponent<HealthManager>();
+        animation = GetComponentInChildren<AnimationManager>();
     }
 
     private void Update()
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdatePlayerPosition()
     {
-        if (knockDown && Input.GetKeyDown(KeyCode.C))
+        if (KnockDown && Input.GetKeyDown(KeyCode.C))
         {
             StartCoroutine(EnableEnemyManager(0.5f));
             animation.StandUp();
@@ -93,16 +95,5 @@ public class PlayerMovement : MonoBehaviour
             body.velocity.y,
             Input.GetAxisRaw(Axis.VERTICAL) * -verticalSpeed
         );
-    }
-
-    public bool knockDown
-    {
-        get {
-            return isKnockedDown;
-        }
-
-        set {
-            isKnockedDown = value;
-        }
     }
 }

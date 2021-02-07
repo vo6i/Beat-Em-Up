@@ -2,6 +2,8 @@
 
 public class CameraShake : MonoBehaviour
 {
+    public bool ShakeNow { set; get; }
+
     public float slowDown = 1.0f;
     public float duration = 0.2f;
     public float power    = 0.2f;
@@ -31,6 +33,4 @@ public class CameraShake : MonoBehaviour
             ShakeNow = false;
         }
     }
-
-    public bool ShakeNow { set; get; }
 }

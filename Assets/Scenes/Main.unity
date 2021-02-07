@@ -815,7 +815,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372495924}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84dc88aefe699ca4a8668b9e63fce0bb, type: 3}
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 1948137386}
   - component: {fileID: 1948137387}
   m_Layer: 0
-  m_Name: EnemiesSpawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

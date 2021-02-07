@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class CharacterAttack : MonoBehaviour
+public class CollisionManager : MonoBehaviour
 {
     public bool isPlayer, isEnemy;
     public GameObject hitEffect;
@@ -11,12 +9,7 @@ public class CharacterAttack : MonoBehaviour
     public float radius = 1.0f;
     public float damage = 5.0f;
 
-    void Update()
-    {
-        DetectCollision();
-    }
-
-    void DetectCollision()
+    private void Update()
     {
         Collider[] hit = Physics.OverlapSphere(
             transform.position, radius, layerMask
@@ -24,12 +17,12 @@ public class CharacterAttack : MonoBehaviour
 
         if (hit.Length > 0)
         {
-            bool knockDown = isEnemy && gameObject.CompareTag(ObjectTags.RIGHT_LEG);
+            bool knockDown = isEnemy && gameObject.CompareTag(ObjectTag.RIGHT_LEG);
 
             if (isPlayer)
             {
-                knockDown = gameObject.CompareTag(ObjectTags.LEFT_ARM) ||
-                            gameObject.CompareTag(ObjectTags.LEFT_LEG);
+                knockDown = gameObject.CompareTag(ObjectTag.LEFT_ARM) ||
+                            gameObject.CompareTag(ObjectTag.LEFT_LEG);
 
                 Vector3 hitPosition = hit[0].transform.position;
                 bool right = hit[0].transform.forward.x < 0;
@@ -40,7 +33,7 @@ public class CharacterAttack : MonoBehaviour
                 Instantiate(hitEffect, hitPosition, Quaternion.identity);
             }
 
-            hit[0].GetComponent<CharacterHealth>().ApplyDamage(damage, knockDown);
+            hit[0].GetComponent<HealthManager>().ApplyDamage(damage, knockDown);
             gameObject.SetActive(false);
         }
     }

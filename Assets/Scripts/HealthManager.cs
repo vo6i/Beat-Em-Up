@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class CharacterHealth : MonoBehaviour
+public class HealthManager : MonoBehaviour
 {
     public bool isPlayer;
     public float health = 100.0f;
 
+    private new AnimationManager animation;
+    private SlowMotion slowMotion;
+
+    private MovementManager movement;
+    private UIManager uiManager;
+
     private bool dead = false;
 
-    private UIManager uiManager;
-    private SlowMotion slowMotion;
-    private PlayerMovement movement;
-    private new CharacterAnimation animation;
-
-    void Awake()
+    private void Awake()
     {
-        animation = GetComponentInChildren<CharacterAnimation>();
+        animation = GetComponentInChildren<AnimationManager>();
         slowMotion = GetComponent<SlowMotion>();
 
         if (isPlayer)
         {
-            movement = GetComponent<PlayerMovement>();
+            movement = GetComponent<MovementManager>();
             uiManager = GetComponent<UIManager>();
         }
     }
@@ -46,7 +45,7 @@ public class CharacterHealth : MonoBehaviour
             }
             else if (isPlayer)
             {
-                movement.knockDown = true;
+                movement.KnockDown = true;
                 ToggleEnemyManager(false);
             }
         }
@@ -63,7 +62,7 @@ public class CharacterHealth : MonoBehaviour
         }
     }
 
-    void OnCharacterDeath(bool ko = false)
+    private void OnCharacterDeath(bool ko = false)
     {
         dead = true;
         slowMotion.Play(ko);
@@ -72,7 +71,7 @@ public class CharacterHealth : MonoBehaviour
     public void ToggleEnemyManager(bool enable)
     {
         EnemyManager enemy = GameObject
-            .FindWithTag(ObjectTags.ENEMY)
+            .FindWithTag(ObjectTag.ENEMY)
             .GetComponent<EnemyManager>();
 
         if (!isPlayer) enemy.Destroy();

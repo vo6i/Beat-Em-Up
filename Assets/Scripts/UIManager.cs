@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        healthBar = GameObject.FindWithTag(ObjectTags.HEALTH).GetComponent<Image>();
+        healthBar = GameObject.FindWithTag(ObjectTag.HEALTH).GetComponent<Image>();
     }
 
     public void UpdateHealthBar(float value)
