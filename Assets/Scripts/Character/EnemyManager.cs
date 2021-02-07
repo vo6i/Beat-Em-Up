@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -89,6 +87,6 @@ public class EnemyManager : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(this.gameObject, 2.5f);
+        Destroy(gameObject, 5.0f);
     }
 }

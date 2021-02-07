@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class SlowMotion : MonoBehaviour
 {
@@ -17,16 +15,16 @@ public class SlowMotion : MonoBehaviour
     [SerializeField]
     private float duration = 1.0f;
 
-    private bool disableAudio = false;
-    AudioSourceData[] audioSources;
     private float fixedDeltaTime;
+    private bool affectAudio = false;
+    private AudioSourceData[] audioSources;
 
-    void Awake()
+    private void Awake()
     {
         fixedDeltaTime = Time.fixedDeltaTime;
     }
 
-    void Start()
+    private void Start()
     {
         AudioSource[] audios = FindObjectsOfType<AudioSource>();
         audioSources = new AudioSourceData[audios.Length];
@@ -42,7 +40,7 @@ public class SlowMotion : MonoBehaviour
 
     public void Play(bool audio = false)
     {
-        disableAudio = audio;
+        affectAudio = audio;
         Invoke("Stop", duration);
 
         Time.timeScale = timeScale;
@@ -54,12 +52,12 @@ public class SlowMotion : MonoBehaviour
         }
     }
 
-    void Stop()
+    private void Stop()
     {
         Time.timeScale = 1.0f;
         Time.fixedDeltaTime = fixedDeltaTime;
 
-        for (int i = 0; disableAudio && i < audioSources.Length; i++)
+        for (int i = 0; affectAudio && i < audioSources.Length; i++)
         {
             audioSources[i].audioSource.pitch = audioSources[i].defaultPitch;
         }

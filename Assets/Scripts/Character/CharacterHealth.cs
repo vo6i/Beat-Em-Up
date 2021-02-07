@@ -4,24 +4,25 @@ using System.Collections.Generic;
 
 public class CharacterHealth : MonoBehaviour
 {
-    private new CharacterAnimation animation;
-    private PlayerMovement movement;
-    private SlowMotion slowMotion;
-    private HealthBar healthBar;
-
-    public float health = 100.0f;
-    private bool dead = false;
     public bool isPlayer;
+    public float health = 100.0f;
+
+    private bool dead = false;
+
+    private UIManager uiManager;
+    private SlowMotion slowMotion;
+    private PlayerMovement movement;
+    private new CharacterAnimation animation;
 
     void Awake()
     {
-        slowMotion = GetComponent<SlowMotion>();
         animation = GetComponentInChildren<CharacterAnimation>();
+        slowMotion = GetComponent<SlowMotion>();
 
         if (isPlayer)
         {
-            healthBar = GetComponent<HealthBar>();
             movement = GetComponent<PlayerMovement>();
+            uiManager = GetComponent<UIManager>();
         }
     }
 
@@ -32,7 +33,7 @@ public class CharacterHealth : MonoBehaviour
 
         if (isPlayer)
         {
-            healthBar.UpdateHealth(health);
+            uiManager.UpdateHealthBar(health);
         }
 
         if (knockDown && Random.Range(0, 2) < 1)
@@ -74,7 +75,7 @@ public class CharacterHealth : MonoBehaviour
             .FindWithTag(ObjectTags.ENEMY)
             .GetComponent<EnemyManager>();
 
-        enemy.enabled = enable;
         if (!isPlayer) enemy.Destroy();
+        enemy.enabled = enable;
     }
 }

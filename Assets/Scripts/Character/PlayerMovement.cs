@@ -4,21 +4,25 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float verticalSpeed = 1.5f;
+    public float horizontalSpeed = 2.0f;
+
+    private struct Axis
+    {
+        public const string HORIZONTAL = "Horizontal";
+        public const string VERTICAL   = "Vertical";
+    }
+
     private new CharacterAnimation animation;
-    private float defaulRotation = 0.0f;
+    private bool isKnockedDown = false;
+
     private CharacterHealth health;
     private Rigidbody body;
-
-    public float horizontalSpeed = 2.0f;
-    private bool isKnockedDown = false;
-    public float verticalSpeed = 1.5f;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
         health = GetComponent<CharacterHealth>();
-
-        defaulRotation = gameObject.transform.eulerAngles.y;
         animation = GetComponentInChildren<CharacterAnimation>();
     }
 
@@ -78,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animation.Walk(
             Input.GetAxisRaw(Axis.HORIZONTAL) != 0 ||
-            Input.GetAxisRaw(Axis.VERTICAL) != 0
+            Input.GetAxisRaw(Axis.VERTICAL)   != 0
         );
     }
 

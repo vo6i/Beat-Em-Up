@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -9,15 +7,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
 
-    void Awake()
+    private void Awake()
     {
-        if (instance == null)
+        if (instance is null)
         {
             instance = this;
         }
     }
 
-    void Start()
+    private void Start()
     {
         Spawn();
     }
