@@ -41,7 +41,7 @@ public class CameraManager : MonoBehaviour
         float target = player.transform.position.x;
 
         position.x = Mathf.Clamp(Mathf.Lerp(
-            transform.position.x, target, speed * Time.deltaTime
+            transform.position.x, target, Time.deltaTime * speed
         ), rightBound, leftBound);
 
         transform.position = position;
