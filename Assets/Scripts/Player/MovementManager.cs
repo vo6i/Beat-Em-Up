@@ -30,14 +30,21 @@ public class MovementManager : MonoBehaviour
 
     private void Update()
     {
-        UpdatePlayerPosition();
-        UpdatePlayerRotation();
-        UpdatePlayerAnimation();
+        
+        if (KnockDown)
+        {
+            UpdatePlayerPosition();
+        }
+        else
+        {
+            UpdatePlayerRotation();
+            UpdatePlayerAnimation();
+        }
     }
 
     private void UpdatePlayerPosition()
     {
-        if (KnockDown && Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             StartCoroutine(EnableEnemyManager(0.5f));
             animation.StandUp();
@@ -48,6 +55,7 @@ public class MovementManager : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         health.ToggleEnemyManager(true);
+        KnockDown = false;
     }
 
     private void UpdatePlayerRotation()
@@ -90,10 +98,13 @@ public class MovementManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        body.velocity = new Vector3(
-            Input.GetAxisRaw(Axis.HORIZONTAL) * -horizontalSpeed,
-            body.velocity.y,
-            Input.GetAxisRaw(Axis.VERTICAL) * -verticalSpeed
-        );
+        if (!KnockDown)
+        {
+            body.velocity = new Vector3(
+                Input.GetAxisRaw(Axis.HORIZONTAL) * -horizontalSpeed,
+                body.velocity.y,
+                Input.GetAxisRaw(Axis.VERTICAL) * -verticalSpeed
+            );
+        }
     }
 }

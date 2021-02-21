@@ -12,15 +12,17 @@ public class AnimationEvents : MonoBehaviour
     private float standUpTimer = 1.0f;
 
     private new AnimationManager animation;
+    private CameraManager cameraManager;
+
     private AttackManager playerAttack;
     private EnemyManager enemyManager;
-
-    private CameraShake cameraShake;
     private AudioSource audioSource;
     
     private void Awake()
     {
-        cameraShake = GameObject.FindWithTag(ObjectTag.CAMERA).GetComponent<CameraShake>();
+        cameraManager = GameObject.FindWithTag(ObjectTag.CAMERA)
+                            .GetComponent<CameraManager>();
+
         animation = GetComponent<AnimationManager>();
         audioSource = GetComponent<AudioSource>();
 
@@ -161,7 +163,7 @@ public class AnimationEvents : MonoBehaviour
 
     private void ShakeCamera()
     {
-        cameraShake.ShakeNow = true;
+        cameraManager.Shaking = true;
     }
 
     private void AttackSound()
