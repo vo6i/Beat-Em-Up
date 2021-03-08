@@ -30,7 +30,8 @@ public class MovementManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (health.Dead) return;
+
         if (KnockDown)
         {
             UpdatePlayerPosition();
@@ -98,6 +99,8 @@ public class MovementManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (health.Dead) return;
+
         if (!KnockDown)
         {
             body.velocity = new Vector3(

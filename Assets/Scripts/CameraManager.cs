@@ -6,13 +6,11 @@ public class CameraManager : MonoBehaviour
     public bool Shaking { set; get; }
 
     public float rightBound = -10.0f;
-    public float leftBound = 7.15f;
+    public float leftBound  = 7.15f;
 
     public float slowDown = 1.0f;
     public float duration = 0.2f;
-
-    public float speed = 5.0f;
-    public float power = 0.2f;
+    public float power    = 0.2f;
 
     private float startDuration;
     private Vector3 position;
@@ -40,9 +38,7 @@ public class CameraManager : MonoBehaviour
         Vector3 position = transform.position;
         float target = player.transform.position.x;
 
-        position.x = Mathf.Clamp(Mathf.Lerp(
-            transform.position.x, target, Time.deltaTime * speed
-        ), rightBound, leftBound);
+        position.x = Mathf.Clamp(target, rightBound, leftBound);
 
         transform.position = position;
         this.position.x = position.x;

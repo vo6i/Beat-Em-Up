@@ -10,10 +10,12 @@ public class AttackManager : MonoBehaviour
 
     private bool activeTimer = false;
     private float comboTimer = 0.0f;
+    private HealthManager health;
 
     private void Awake()
     {
         animation = GetComponentInChildren<AnimationManager>();
+        health = GetComponent<HealthManager>();
     }
 
     private void Start()
@@ -24,6 +26,8 @@ public class AttackManager : MonoBehaviour
 
     private void Update()
     {
+        if (health.Dead) return;
+
         CheckComboAttacks();
         ResetComboState();
     }

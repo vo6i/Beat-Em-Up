@@ -765,7 +765,6 @@ MonoBehaviour:
   leftBound: 7.15
   slowDown: 1
   duration: 0.2
-  speed: 5
   power: 0.2
 --- !u!1 &1372495924
 GameObject:
