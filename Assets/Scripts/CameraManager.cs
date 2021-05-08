@@ -33,17 +33,6 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void Follow()
-    {
-        Vector3 position = transform.position;
-        float target = player.transform.position.x;
-
-        position.x = Mathf.Clamp(target, rightBound, leftBound);
-
-        transform.position = position;
-        this.position.x = position.x;
-    }
-
     private void Shake()
     {
         if (duration > 0.0f)
@@ -57,5 +46,16 @@ public class CameraManager : MonoBehaviour
             duration = startDuration;
             Shaking = false;
         }
+    }
+
+    private void Follow()
+    {
+        Vector3 position = transform.position;
+        float target = player.transform.position.x;
+
+        position.x = Mathf.Clamp(target, rightBound, leftBound);
+
+        transform.position = position;
+        this.position.x = position.x;
     }
 }

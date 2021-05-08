@@ -88,6 +88,18 @@ public class EnemyManager : MonoBehaviour
         return Vector3.Distance(transform.position, playerTarget.position);
     }
 
+    void OnEnable()
+    {
+        body.detectCollisions = true;
+        body.isKinematic = false;
+    }
+
+    void OnDisable()
+    {
+        body.detectCollisions = false;
+        body.isKinematic = true;
+    }
+
     public void Destroy()
     {
         Destroy(gameObject, 5.0f);
