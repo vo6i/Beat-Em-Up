@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76203b172ad01e42b0e3fa2a1e3f920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 1.25
   speed: 2
+  attackDistance: 1.25
 --- !u!114 &4300331124624486676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,8 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582d3d07734208b4984c7ae323694fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   isPlayer: 0
+  health: 100
 --- !u!114 &446853597346325140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,14 +369,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce257f98a1e84f743b588a6451202e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whoosh: {fileID: 8300000, guid: 838418b3b56527e408638ea155c4f982, type: 3}
-  fall: {fileID: 8300000, guid: 2ddd55a68c4112f438a6fe40e7826b6a, type: 3}
-  hit: {fileID: 8300000, guid: aecd2941c78666441bcd6484699175ea, type: 3}
-  dead: {fileID: 8300000, guid: ca1457b10734ba04394934b84027517e, type: 3}
   leftArm: {fileID: 118361875}
   rightArm: {fileID: 1041388484}
   leftLeg: {fileID: 0}
   rightLeg: {fileID: 1535642691}
+  whoosh: {fileID: 8300000, guid: 838418b3b56527e408638ea155c4f982, type: 3}
+  fall: {fileID: 8300000, guid: 2ddd55a68c4112f438a6fe40e7826b6a, type: 3}
+  hit: {fileID: 8300000, guid: aecd2941c78666441bcd6484699175ea, type: 3}
+  dead: {fileID: 8300000, guid: d6f42f68225955944a597382fa5cd8f5, type: 3}
   standUpTimer: 1
 --- !u!114 &1834968799873859990
 MonoBehaviour:
