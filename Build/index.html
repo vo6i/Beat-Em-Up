@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ustym Ukhman" />
+
+    <meta name="theme-color" content="#232323" />
+    <meta name="msapplication-TileColor" content="#232323" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="keywords" content="Ustym,Ukhman,Ustym Ukhman,Unity3D,Beat-Em-Up,Game" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Unity WebGL Player | Beat Em Up</title>
+
+    <style type="text/css">
+      body {
+        background-color: #232323;
+        text-align: center;
+        overflow: hidden;
+
+        padding: 0;
+        margin: 0;
+      }
+
+      canvas#canvas {
+        transform: translate(-50%, -50%);
+        aspect-ratio: 16 / 9;
+        position: absolute;
+
+        height: 768px;
+        width: 1280px;
+
+        left: 50%;
+        top: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="canvas" width="1280px" height="768px"></canvas>
+    <script type="text/javascript" src="Build/Build.loader.js"></script>
+
+    <script type="text/javascript">
+      createUnityInstance(document.getElementById("canvas"), {
+        frameworkUrl: "Build/Build.framework.js",
+        streamingAssetsUrl: "StreamingAssets",
+        codeUrl: "Build/Build.wasm",
+        dataUrl: "Build/Build.data",
+        companyName: "UstymUkhman",
+        productName: "Beat Em Up",
+        productVersion: "0.1.0",
+        devicePixelRatio
+      });
+    </script>
+  </body>
+</html>
